@@ -5,9 +5,6 @@ import React, { Component } from 'react';
 import 'brace/mode/java';
 import 'brace/theme/github';
 
-
-
-
 class App extends React.Component {
   editor;
 
@@ -22,14 +19,19 @@ class App extends React.Component {
   };
 
   componentDidMount(){
- //   let Mode = require("modes/java").Mode;
- //   this.editor.getSession().setMode(new Mode());
     this.editor = this.ace.editor;
-    this.editor.setTheme("ace/theme/clouds");
-    this.editor.setShowPrintMargin(false);
-    this.editor.setOptions({minLines: 25});
-    this.editor.setOptions({maxLines: 50});
-    this.editor.setStyle({height: '500px'});
+    this.editor.setOptions({
+      enableBasicAutocompletion: true,
+      enableLiveAutocompletion: true,
+      showPrintMargin: false,
+      maxLines: Infinity,
+      fontSize: "100%"
+    });
+    this.editor.setTheme("ace/theme/theme-chrome");
+    this.editor.renderer.setOption("showLineNumbers", false);
+    this.editor.getSession().setMode("C:\\Users\\vkash\\Desktop\\nodejs\\hello-world\\ace\\mode\\java");
+    this.editor.defaultProps = App.defaultProps;
+    console.log(this.editor.getSession().getMode().toString());
   }
 
   onCreate(e){
@@ -45,7 +47,6 @@ class App extends React.Component {
       <ReactAce
         onCreate={this.onCreate}
         onChange={this.onChange}
-        enableBasicAutocompletion={true}
         ref={instance => { this.ace = instance; }}
       />
     );
