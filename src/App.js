@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ReactAce from 'react-ace-editor';
+import React, { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  contructor() {
+    this.onChange = this.onChange.bind(this);
+    const editor = this.ace.editor;
+  }
+  onChange(newValue, e) {
+    console.log(newValue, e);
+
+  }
+  render() {
+    return (
+      <ReactAce
+        mode="javascript"
+        theme="github"
+        onChange={this.onChange}
+        enableBasicAutocompletion={true}
+        style={{ height: '400px' }}
+        ref={instance => { this.ace = instance; }}
+      />
+    );
+  }
 }
-
-export default App;
+export default App
