@@ -1,9 +1,12 @@
+
+
 import ReactAce from 'react-ace-editor';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import 'brace/mode/java';
-import 'brace/theme/github';
+const test = require("../src/ace/theme/theme-chrome")
+
+
 
 class App extends React.Component {
   editor;
@@ -27,9 +30,9 @@ class App extends React.Component {
       maxLines: Infinity,
       fontSize: "100%"
     });
-    this.editor.setTheme("ace/theme/theme-chrome");
+    this.editor.setTheme("./ace/theme/theme-chrome.js");
     this.editor.renderer.setOption("showLineNumbers", false);
-    this.editor.getSession().setMode("C:\\Users\\vkash\\Desktop\\nodejs\\hello-world\\ace\\mode\\java");
+    this.editor.session.setMode("C:\\Users\\vkash\\Desktop\\nodejs\\hello-world\\ace\\mode\\java");
     this.editor.defaultProps = App.defaultProps;
     console.log(this.editor.getSession().getMode().toString());
   }
